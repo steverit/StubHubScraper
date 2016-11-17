@@ -28,6 +28,8 @@ def login():
 
     r = requests.post(url, headers=headers, data=body)
 
+    print r
+
     token_response = json.loads(r.content)
     access_token = token_response['access_token']
     user_GUID = r.headers['X-StubHub-User-GUID']
