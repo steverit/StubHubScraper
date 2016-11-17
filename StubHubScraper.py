@@ -28,7 +28,7 @@ def login():
 
     r = requests.post(url, headers=headers, data=body)
 
-    token_response = r.json()
+    token_response = json.loads(str(r.content, "utf-8"))
     access_token = token_response['access_token']
     user_GUID = r.headers['X-StubHub-User-GUID']
     headers['x-stubhub-user-guid'] = user_GUID
@@ -66,7 +66,7 @@ def handleResponse(data, cursor, conn):
         cursor.execute("SELECT * FROM tickets WHERE ticket_ID=?", params)
         result = cursor.fetchone()
         result_serialized = json.dumps(result).encode('utf-8')
-        result_json = json.loads(str(result_serialized, "utf-8"))
+        result_json = json.loads(result_serialized)
 
         print result
 
@@ -103,7 +103,6 @@ if __name__ == "__main__":
         info_url = 'https://api.stubhub.com/search/inventory/v2'
 
         info = requests.get(info_url, headers=headers, params=params)
-        pprint.pprint(info.json())
-        handleResponse(info.json(), cursor, conn)
+        handleResponse(json.loads(str(info.content, "utf-8")), cursor, conn)
         time.sleep(300)
 
