@@ -28,7 +28,7 @@ def login():
 
     r = requests.post(url, headers=headers, data=body)
 
-    token_response = json.loads(r.content)
+    token_response = json.loads(r.text).decode("utf-8")
     access_token = token_response['access_token']
     user_GUID = r.headers['X-StubHub-User-GUID']
     headers['x-stubhub-user-guid'] = user_GUID
@@ -103,6 +103,6 @@ if __name__ == "__main__":
         info_url = 'https://api.stubhub.com/search/inventory/v2'
 
         info = requests.get(info_url, headers=headers, params=params)
-        handleResponse(json.loads(info.content), cursor, conn)
+        handleResponse(json.loads(info.text).decode("utf-8"), cursor, conn)
         time.sleep(300)
 
