@@ -103,6 +103,6 @@ if __name__ == "__main__":
         info_url = 'https://api.stubhub.com/search/inventory/v2'
 
         info = requests.get(info_url, headers=headers, params=params)
-        handleResponse(json.loads(info.content), cursor, conn))
+        handleResponse(json.loads(info.content), cursor, conn)
         time.sleep(300)
 
