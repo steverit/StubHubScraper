@@ -66,7 +66,7 @@ def handleResponse(data, cursor, conn):
         cursor.execute("SELECT * FROM tickets WHERE ticket_ID=?", params)
         result = cursor.fetchone()
         result_serialized = json.dumps(result).encode('utf-8')
-        result_json = json.loads(result_serialized)
+        result_json = json.loads(str(result_serialized, "utf-8"))
 
         print result
 
