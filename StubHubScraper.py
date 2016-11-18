@@ -51,7 +51,7 @@ def buildDatabase():
 
 def handleResponse(data, cursor, conn):
 
-    event = 'Washington Redskins vs Green Bay Packers [11/20/2016]'
+    event = 'Cleveland Cavaliers at New York Knicks [12/07/2016]'
 
     tickets = data['listing']
 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
         # headers['Accept'] = 'application/json'
         # headers['Accept-Encoding'] = 'application/json'
 
-        eventid = '9566660'
+        eventid = '9640433'
         params = {}
         params['eventId'] = eventid
 
