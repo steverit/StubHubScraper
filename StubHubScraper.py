@@ -3,15 +3,14 @@ import sqlite3
 import time
 import json
 import base64
-import pprint
+import config
 
 def login():
     # Enter user's API key, secret, and Stubhub login
-    app_token = 'J6QF_BD8bfKsrMaCVVCwfKGJOV0a'
-    consumer_key = 'HG3A0XLMe7N67e8HSTkZFUNmzNca'
-    consumer_secret = '2aZU6zhCLIRew5jmM6pAGHOoH9ka'
-    stubhub_username = 'jackson.cheek@gmail.com'
-    stubhub_password = 'd3p8EL4sED'
+    consumer_key = config.StubHub['consumer_key']
+    consumer_secret = config.StubHub['consumer_secret']
+    stubhub_username = config.StubHub['stubhub_username']
+    stubhub_password = config.StubHub['stubhub_password']
 
     combo = consumer_key + ':' + consumer_secret
     basic_authorization_token = base64.b64encode(combo)
@@ -91,7 +90,6 @@ if __name__ == "__main__":
 
     while True:
         access_token, headers, body = login()
-        app_token = 'J6QF_BD8bfKsrMaCVVCwfKGJOV0a'
 
         headers = {}
         headers['Authorization'] = 'Bearer ' + access_token
